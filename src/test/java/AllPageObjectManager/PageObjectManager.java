@@ -16,6 +16,7 @@ public class PageObjectManager {
 	public GenericClass gc;
 	public SignUpPageObjects signUpPageObjects;
 	public CreateAccountPageObjects createAccountPageObjects;
+	public BasicInfoPageObjects basicInfoPageObjects;
 
 	public PageObjectManager(WebDriver driver) {
 
@@ -72,5 +73,11 @@ public class PageObjectManager {
 
 		createAccountPageObjects = new CreateAccountPageObjects(driver);
 		return createAccountPageObjects;
+	}
+	
+	public BasicInfoPageObjects verifyUserLandsOnBasicInfoPage() {
+		
+		basicInfoPageObjects = new BasicInfoPageObjects(driver);
+		return basicInfoPageObjects;
 	}
 }

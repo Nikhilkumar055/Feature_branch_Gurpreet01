@@ -9,6 +9,21 @@ Feature: Login functionality for seller dashboard
     Examples: 
       | username                     | password        |
       | "nikhilk.ug18.cs@nitp.ac.in" | "Mypapa@123456" |
+      
+
+@StressloginSuccess
+  Scenario Outline: Successful login with valid credentials
+    #Given the user is on the seller info page and navigates to login page by clicking the login button
+    #When the user enters valid <username> and <password>
+    #And clicks the login button
+    #And the user should be redirected to the dashboard
+		Then User clicks on the logout button
+		
+    Examples: 
+      | username                     | password        |
+      | "nikhilk.ug18.cs@nitp.ac.in" | "Mypapa@123456" |
+
+
 @loginUnsuccess
   Scenario Outline: Unsuccessful login with invalid credentials
     Given the user is on the seller info page and navigates to login page by clicking the login button
