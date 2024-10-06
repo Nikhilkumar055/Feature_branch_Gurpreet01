@@ -1,5 +1,6 @@
 package com.Trailshoppy.com.Trailshoppy_Seller_Dashboard_step_defination;
 
+import AllPageObjectManager.BasicInfoPageObjects;
 import AllPageObjectManager.CreateAccountPageObjects;
 import AllPageObjectManager.PageObjectManager;
 import AllPageObjectManager.SignUpPageObjects;
@@ -14,6 +15,8 @@ public class VerifySignUpPage {
 	public PageObjectManager pageObjectManager;
 	SignUpPageObjects signUpPageObjects;
 	CreateAccountPageObjects createAccountPageObjects;
+	BasicInfoPageObjects basicInfoPageObjects;
+
 	public VerifySignUpPage(TextContextSetUp textContextSetUp) {
 		this.textContextSetUp = textContextSetUp;
 	}
@@ -35,51 +38,66 @@ public class VerifySignUpPage {
 		signUpPageObjects = textContextSetUp.pageObjects.goToSignUpPage();
 		signUpPageObjects.verifyLandOnCreateAccount();
 	}
-	
-	
+
 	@Then("user click on Send OTP button to receive OTP on {string} and enters the OTP")
-	public void user_click_on_send_otp_button_to_receive_otp_on_and_enters_the_otp(String emailAddress) throws InterruptedException {
-	   createAccountPageObjects = textContextSetUp.pageObjects.verifyOTPForUser();
-	   createAccountPageObjects.clickOnOTPButton();
-	   createAccountPageObjects.getOTPFromYopMail(emailAddress);
-//	   createAccountPageObjects.enterOTPAndCreateAccount(0);
+	public void user_click_on_send_otp_button_to_receive_otp_on_and_enters_the_otp(String emailAddress)
+			throws InterruptedException {
+		createAccountPageObjects = textContextSetUp.pageObjects.verifyOTPForUser();
+		createAccountPageObjects.clickOnOTPButton();
+		createAccountPageObjects.getOTPFromYopMail(emailAddress);
+
 	}
-	
+
 	@When("User enters the Ten Digit {string}")
 	public void user_enters_the_ten_digit(String mobileNumber) {
-	   createAccountPageObjects.enterMobileNumber(mobileNumber);
+		createAccountPageObjects.enterMobileNumber(mobileNumber);
 	}
+
 	@When("User enter the {string}")
 	public void user_enter_the(String passWord) {
-	   createAccountPageObjects.setPassword(passWord);
+		createAccountPageObjects.setPassword(passWord);
 	}
+
 	@When("User click on create Account button")
 	public void user_click_on_create_account_button() {
-	   createAccountPageObjects.createAccountButton();
+		createAccountPageObjects.createAccountButton();
 	}
+
 	@When("user navigates to the Basic info page")
 	public void user_navigates_to_the_basic_info_page() {
-	    
+		basicInfoPageObjects = textContextSetUp.pageObjects.verifyUserLandsOnBasicInfoPage();
+		basicInfoPageObjects.verifyUserOnBasicInfoPage();
+
 	}
+
 	@When("User enters the {string}, {string}, {string}, {string}, {string} and {string}")
-	public void user_enters_the_and(String string, String string2, String string3, String string4, String string5, String string6) {
-	    
+	public void user_enters_the_and(String firstName, String lastName, String pincode, String addressline, String city,
+			String state) {
+		basicInfoPageObjects.fillingBasicInfoPage(firstName, lastName, pincode, addressline, city, state);
 	}
+
 	@When("User clicks on the save and next button")
 	public void user_clicks_on_the_save_and_next_button() {
-	    
+		basicInfoPageObjects.SaveBasicInfoPage();
 	}
+
 	@When("User navigates to the business info page")
 	public void user_navigates_to_the_business_info_page() {
-	    
+		basicInfoPageObjects.verifyUserOnBusinessInfoPage();
 	}
-	@When("User enters {string}, {string}, {string}, {string}, {string}, {string} and {string}")
-	public void user_enters_and(String string, String string2, String string3, String string4, String string5, String string6, String string7) {
-	    
+
+	@When("User enters {string}, {string}, {string},{string},{string}, {string}, {string} and {string}")
+	public void user_enters_and(String store, String storeDescription, String GSTNumber, String pincode,
+			String bAddressLine, String bcity, String bstate, String bcountry) throws InterruptedException {
+		basicInfoPageObjects.fillingBusinessInfoPage(store, storeDescription, GSTNumber, pincode, bAddressLine, bcity,
+				bstate, bcountry);
 	}
+
 	@Then("User navigates to verification page")
 	public void user_navigates_to_verification_page() {
-	    
+		
+		basicInfoPageObjects.waitForVerificationPage();
+
 	}
 
 }

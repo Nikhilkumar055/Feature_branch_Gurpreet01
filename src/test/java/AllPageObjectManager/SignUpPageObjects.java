@@ -20,7 +20,7 @@ public class SignUpPageObjects extends GenericClass {
 		this.driver = driver;
 	}
 
-	By start_Selling_Email = By.xpath("//input[@type='email']");
+	By start_Selling_Email = By.xpath("//input[@placeholder='Enter Email Id']");
 	By start_Selling_button = By.cssSelector(".mt-3");
 	By getCreateAccountText = By.xpath("//p[@class='text-gray-700 text-left']");
 
@@ -37,24 +37,16 @@ public class SignUpPageObjects extends GenericClass {
 		getWaitTimeForErrorLoginText();
 		getScrollPage();
 		driver.findElement(start_Selling_Email).sendKeys(startSellingEmail);
-		while (true) {
-			driver.findElement(start_Selling_button).click();
-			Thread.sleep(2000);
-			if (driver.findElements(getCreateAccountText).size()> 0) {
-				break;
-			}
-		}
+		driver.findElement(start_Selling_button).click();
+
 	}
 
 	public void verifyLandOnCreateAccount() {
-		System.out.println("I am executed");
 		String validateCreateAccountText = driver.findElement(getCreateAccountText).getText();
 		System.out.println(validateCreateAccountText);
-		if(validateCreateAccountText == "Create your account to start selling") {
-			System.out.println(validateCreateAccountText);
-			
+		if (validateCreateAccountText == "Create your account to start selling") {
+
 		}
-		
 
 	}
 

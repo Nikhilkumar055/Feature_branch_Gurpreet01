@@ -69,6 +69,12 @@ public class VerifyLoginPage {
 		unsuccessLogin.verifyUnsuccessfulLogin();
 	    
 	}
+	
+	@Then("User clicks on the logout button")
+	public void user_clicks_on_the_logout_button() {
+		
+		
+	}
 
 
 }

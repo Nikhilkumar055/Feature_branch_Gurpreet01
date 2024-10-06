@@ -27,7 +27,7 @@ public class CreateAccountPageObjects extends GenericClass {
 	By mobileNumberField = By.cssSelector("input[Placeholder='Enter Mobile Number']");
 	By password = By.cssSelector("input[Placeholder='Set Password']");
 	By createAccountButton = By.cssSelector("button[type='submit']");
-	By NotificationOfOTPSent = By.cssSelector("div[aria-live='polite']");
+	By ResendOTPButton = By.xpath("//button[@class ='w-[150px] px-4 py-1 text-sm rounded bg-[#F19305] text-white opacity-50 cursor-not-allowed']");
 
 	public void clickOnOTPButton() {
 
@@ -37,7 +37,7 @@ public class CreateAccountPageObjects extends GenericClass {
 
 	public void getOTPFromYopMail(String emailAddress) throws InterruptedException {
 		OTPSentNotification();
-		if (driver.findElement(NotificationOfOTPSent).getText() == "OTP sent to registered Email ID") {
+		if (driver.findElement(ResendOTPButton).getText().contains("Resend in") ) {
 			driver.navigate().to("https://yopmail.com/en/");
 			getYopMailWaitTime();
 			driver.findElement(yopMailEmail).sendKeys(emailAddress);
@@ -61,7 +61,7 @@ public class CreateAccountPageObjects extends GenericClass {
 		}
 		
 		else {
-			System.out.println(driver.findElement(NotificationOfOTPSent).getText());
+			System.out.println(driver.findElement(ResendOTPButton).getText());
 		}
 	}
 

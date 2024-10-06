@@ -6,6 +6,7 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,8 +24,14 @@ public class GenericClass {
 	By errorLoginText = By.xpath("//div[@class='go3958317564']");
 	By goButtonOnYopMail = By.id("refreshbut");
 	By waitForYopMailOTPPage = By.xpath("(//div[@class='tooltip'])[2]");
-	By NotificationOfOTPSent = By.cssSelector("div[aria-live='polite']");
-	
+	By ResendOTPButton = By.xpath(
+			"//button[@class ='w-[150px] px-4 py-1 text-sm rounded bg-[#F19305] text-white opacity-50 cursor-not-allowed']");
+	By basicInfoText = By.xpath("//div/div/div/div/span[1]");
+	By first_Name = By.xpath("//div/div/form/div/div/label/div/span[1]");
+	By store = By.xpath("//div/div/form/div/div/label/div[1]");
+	By storeInfo = By.xpath("//div/div/form/div/div/label/div[1]");
+	By storeName = By.cssSelector("input[name='storeName']");
+
 	public void getWaitTimeForErrorLoginText() {
 
 		wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -57,11 +64,35 @@ public class GenericClass {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(waitForYopMailOTPPage));
 	}
-	
+
 	public void OTPSentNotification() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationOfOTPSent));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ResendOTPButton));
+
+	}
+
+	public void waitForBasicInfoPage() {
+
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(basicInfoText, "1000+"));
+	}
+
+	public void waitForBusinessInfoPage() {
+
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(first_Name, "First Name"));
+	}
+
+	public void waitForTheVerificationPage() {
+
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(storeInfo, "Store:"));
+	}
+
+	public void waitForStoreNameDisplay() {
 		
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(store)));
 	}
 
 }
