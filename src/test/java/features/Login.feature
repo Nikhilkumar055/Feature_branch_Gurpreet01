@@ -43,7 +43,7 @@ Feature: Login functionality for seller dashboard
     And clicks the login button
     Then a validation message should be displayed
 #
-  #Scenario: Forgotten password link is functional
-    #Given the user is on the login page
-    #When the user clicks the "Forgot Password" link
-    #Then the user should be redirected to the password recovery page
+  Scenario: Forgotten password link is functional
+    Given the user is on the login page
+    When the user clicks the "Forgot Password" link
+    Then the user should be redirected to the password recovery page to recreate the new password
